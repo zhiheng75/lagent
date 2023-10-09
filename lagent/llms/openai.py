@@ -148,10 +148,11 @@ class GPTAPI(BaseAPIModel):
         else:
             messages = input
 
+        # This will break when using APIs other than OpenAI's. Skip it.
         # Hold out 100 tokens due to potential errors in tiktoken calculation
-        max_out_len = min(
-            max_out_len,
-            self.context_window - self.get_token_len(str(input)) - 100)
+        # max_out_len = min(
+        #     max_out_len,
+        #     self.context_window - self.get_token_len(str(input)) - 100)
         if max_out_len <= 0:
             return ''
 
